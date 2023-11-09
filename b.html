@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Blog Page</title>
+    <style>
+        body {
+            background-color: lightblue;
+            font-family: Arial, sans-serif;
+        }
+
+        #text-section, #image-section, #video-section, #display-section {
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #666;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #content-display {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <center><h1>My Blog</h1></center>
+
+    <!-- Text Content -->
+    <div id="text-section">
+        <h2>Add Text</h2>
+        <textarea id="text-content" rows="4" cols="50" placeholder="Enter your text here"></textarea>
+       <br> <button id="add-text-button">Add Text</button></br>
+    </div>
+
+    <!-- Image Content -->
+    <div id="image-section">
+        <h2>Add Image</h2>
+        <input type="file" id="image-file" accept="image/*">
+        <button id="add-image-button">Add Image</button><br>
+        <div id="image-preview"></div>
+    </div>
+
+    <!-- Video Content -->
+    <div id="video-section">
+        <h2>Add Video</h2>
+        <input type="file" id="video-file" accept="video/*">
+        <button id="add-video-button">Add Video</button>
+        <div id="video-preview"></div>
+    </div>
+
+    <!-- Display Area -->
+    <div id="display-section">
+        <h2>Blog Content</h2>
+        <div id="content-display"></div>
+    </div>
+
+    <script>
+        document.getElementById("add-text-button").addEventListener("click", function () {
+            var text = document.getElementById("text-content").value;
+            displayContent(text);
+        });
+
+        document.getElementById("add-image-button").addEventListener("click", function () {
+            var image = document.getElementById("image-file").files[0];
+            displayContent('<img src="' + URL.createObjectURL(image) + '" alt="Uploaded Image">');
+        });
+
+        document.getElementById("add-video-button").addEventListener("click", function () {
+            var video = document.getElementById("video-file").files[0];
+            displayContent('<video controls><source src="' + URL.createObjectURL(video) + '" type="video/mp4">Your browser does not support the video tag.</video>');
+        });
+
+        function displayContent(content) {
+            var contentDisplay = document.getElementById("content-display");
+            contentDisplay.innerHTML += content + "<br>";
+        }
+    </script>
+</body>
+</html>
+
+
